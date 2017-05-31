@@ -1,0 +1,279 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<?php echo $this->headTitle('Connexion | Admin My webtoprint')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+<?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+?>
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+<?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/ressources_bo_webapp/favicon.ico'))					
+//						->prependStylesheet($this->basePath('ressources_bo_webapp/assets/global/plugins/uniform/css/uniform.default.css'))
+                        ->prependStylesheet($this->basePath('ressources_bo_webapp/assets/global/plugins/bootstrap/css/bootstrap.min.css'))
+//                        ->prependStylesheet($this->basePath('ressources_bo_webapp/assets/global/plugins/simple-line-icons/simple-line-icons.min.css'))
+                        ->prependStylesheet($this->basePath('ressources_bo_webapp/assets/global/plugins/font-awesome/css/font-awesome.min.css'))
+->prependStylesheet ( $this->basePath ( 'ressources_bo_webapp/assets/admin/pages/css/login-soft.css' ) )
+//->prependStylesheet ( $this->basePath ( 'ressources_bo_webapp/assets/admin/layout/css/themes/darkblue.css' ) )
+//->prependStylesheet ( $this->basePath ( 'ressources_bo_webapp/assets/admin/layout/css/layout.css' ) )
+//->prependStylesheet ( $this->basePath ( 'ressources_bo_webapp/assets/global/css/plugins.css' ) )
+->prependStylesheet ( $this->basePath ( 'ressources_bo_webapp/assets/global/css/components.css' ) )
+//->prependStylesheet ( $this->basePath ( 'ressources_bo_webapp/css/login.css' ) );?>
+<!-- END GLOBAL MANDATORY STYLES -->
+<style>
+body {
+    background-color: #FFFFFF !important;
+}
+.btn-success {
+	background-color: #444868;
+	border-color: #444868;
+}
+
+.btn-success:hover {
+	background-color: #e3318b;
+	border-color: #e3318b;
+}
+</style>
+<?php echo $this->headScript()        
+->prependFile ( $this->basePath ( 'js/localization_js_validation/messages_fr.js' ) )
+->prependFile ( $this->basePath ( 'ressources_bo_webapp/assets/global/plugins/jquery-validation/js/jquery.validate.min.js' ) )
+//->prependFile ( $this->basePath ( 'ressources_bo_webapp/scripts/login/validation_login.js' ) )
+//->prependFile ( $this->basePath ( 'ressources_bo_webapp/scripts/login/login.js' ) )
+->prependFile ( $this->basePath ( 'ressources_bo_webapp/assets/global/plugins/backstretch/jquery.backstretch.min.js' ) )
+	//        	->prependFile($this->basePath('ressources_bo_webapp/assets/global/plugins/uniform/jquery.uniform.min.js'))
+	//            ->prependFile($this->basePath('ressources_bo_webapp/assets/global/plugins/jquery.cokie.min.js'))
+	 //           ->prependFile($this->basePath('ressources_bo_webapp/assets/global/plugins/jquery.blockui.min.js'))
+	  //          ->prependFile($this->basePath('ressources_bo_webapp/assets/global/plugins/bootstrap/js/bootstrap.min.js'))
+	   //         ->prependFile($this->basePath('ressources_bo_webapp/assets/global/plugins/jquery-migrate.min.js'))
+	            ->prependFile($this->basePath('ressources_bo_webapp/assets/global/plugins/jquery.min.js'))
+	            
+	        ; ?>       
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="login">
+	
+<?php
+$title = 'Connexion | Admin My webtoprint';
+$this->headTitle ( $title );
+?>
+
+<!-- END PAGE LEVEL SCRIPTS -->
+<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+<div class="menu-toggler sidebar-toggler"></div>
+<!-- END SIDEBAR TOGGLER BUTTON -->
+<!-- BEGIN LOGO -->
+<div class="logo">
+	<a href="#"> <img
+		src="<?php echo $this->basePath('ressources_bo_webapp/img/logo-ehcg.png') ?>"
+		alt="" />
+	</a>
+</div>
+<!-- END LOGO -->
+<div class="content">
+	<!-- BEGIN LOGIN FORM -->
+	<form id="login_form" class="login-form">
+		<h3 class="form-title">Connexion</h3>
+		<div id="block_alert_login"></div>
+		
+		<div class="form-group">
+			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+			<label class="control-label visible-ie8 visible-ie9">Login</label>
+			<div class="input-icon">
+				<i class="fa fa-user"></i>
+				<input id="input_login" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Login" name="username" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label visible-ie8 visible-ie9">Mot de passe</label>
+			<div class="input-icon">
+				<i class="fa fa-lock"></i>
+				<input id="input_password" class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Mot de passe" name="password" />
+			</div>
+		</div>
+		<div class="form-actions">
+			
+			<button type="submit" class="btn blue pull-right">
+			Se connecter <i class="m-icon-swapright m-icon-white"></i>
+			</button>
+		</div>
+		<div class="login-options">
+			<h4></h4>
+			<ul class="social-icons">
+				
+			</ul>
+		</div>
+		
+		
+	</form>
+	<!-- END FORGOT PASSWORD FORM -->
+</div>
+
+<?php // $this->headScript()->captureStart()?>
+<script type="text/javascript">
+jQuery(document).ready(function() {  
+//Login.init();
+$.backstretch([
+        "<?php echo $this->basePath('ressources_bo_webapp/assets/admin/pages/media/bg/1.jpg') ?>",
+ //       "<?php echo $this->basePath('ressources_bo_webapp/assets/admin/pages/media/bg/2.jpg') ?>",
+        "<?php echo $this->basePath('ressources_bo_webapp/assets/admin/pages/media/bg/3.jpg') ?>",
+ //       "<?php echo $this->basePath('ressources_bo_webapp/assets/admin/pages/media/bg/4.jpg') ?>"
+        ], {
+          fade: 1000,
+          duration: 8000
+    }
+    );
+$('#input_password,#input_login').keypress(function(event) {
+			if (event.which == '13') {
+				login();
+     		}
+});
+var form1 = $('#login_form');
+var error1 = $('.alert-danger', form1);
+var success1 = $('.alert-success', form1);
+		    
+form1.validate({
+        errorElement: 'span', //default input error message container
+        errorClass: 'help-block help-block-error', // default input error message class
+        focusInvalid: true, // do not focus the last invalid input
+        ignore: ".ignore :input",  // validate all fields including form hidden input
+        messages: {
+        	//"username": '',
+        },
+        rules: {
+        		'username': {
+	                required: true,
+// 	                email: true,
+// 	                minlength: 3
+        		},
+                'password':{
+                     required: true,
+                     
+                 }
+        },
+        invalidHandler: function (event, validator) {             
+            success1.hide();
+            error1.show();
+        //    Metronic.scrollTo(error1, -200);
+            for (var i=0;i<validator.errorList.length;i++){
+            	$(validator.errorList[i].element).parents('.tab-pane').each( function(){
+            		var id = $(this).attr('id');
+            		$("#span_errors_"+id).html('<i class="fa fa-times red"></i>');
+            	});
+            }
+        },
+        highlight: function (element) { 
+            $(element)
+                .closest('.form-group').addClass('has-error'); 
+        },
+        unhighlight: function (element) { 
+            $(element)
+                .closest('.form-group').removeClass('has-error'); 
+        },
+        success: function (label) {
+            label
+                .closest('.form-group').removeClass('has-error');
+        },
+        submitHandler: function (form) {
+        	$( '#block_alert_login' ).html( '<p><i class="fa fa-spinner fa-spin" style="color: #529644;font-size: 20px;"></i> Identification en cours, veuillez patienter...</p>');
+        	var login=$('#input_login').val();
+        	var pass=$('#input_password').val();
+        	var url="/ServiceLoginAuth/authenticate";
+			var datas="login="+login+"&password="+pass;
+			// Send
+			$.ajax({
+				url: url, 
+				type: 'POST',
+				data: datas,
+				success: function(data)
+				{
+					if(data.success==true){
+						document.location.href ='/'+data.redirect;
+					}else{
+						//alert("nn");
+						var msg='<div id="block_alert_login" class="alert alert-danger"><button class="close" data-close="alert"></button><span>Erreur d\'identifiant ou de mot de passe</span></div>';
+						$('#block_alert_login').html(msg);
+						//$('#modal_transmission_error').modal('show');;
+					}
+				}
+			});			
+// 		            error1.hide();		
+//         			$(form).attr('action', "/create_company");	  	
+//         			$('#modal_loading').modal('show');				
+//           			var formData = $(form).serializeArray();
+//           			$.ajax({			
+//           	        url: $(form).attr("action"),          
+//           	        type : "POST",
+//           	        data:  formData,
+//           	        success : function(response) {
+//           	           }
+//           			});         			
+//           			return false;
+        }
+});
+//Mot de passe oubliée btn_validate_forgot_password
+$('#btn_validate_forgot_password').click(function() {
+	var email=$('#user_email').val();
+	if(!email){
+		$('#block_alert_forgot').html('');
+		$('#form-group-email').addClass( "has-error" );
+		$('#help-block-empty-mail').show();
+		setTimeout(function(){
+			$('#form-group-email').removeClass( "has-error" );
+			$('#help-block-empty-mail').hide();
+    	}, 4000);
+	}else if(!validateEmail(email)){
+		$('#block_alert_forgot').html('');
+		$('#form-group-email').addClass( "has-error" );
+		$('#help-block-invalid-mail').show();
+		setTimeout(function(){
+			$('#form-group-email').removeClass( "has-error" );
+			$('#help-block-invalid-mail').hide();
+    	}, 4000);
+	}else{
+		$('#block_alert_forgot').html( '<p><i class="fa fa-spinner fa-spin" style="color: #529644;font-size: 20px;"></i> Traitement en cours, veuillez patienter...</p>');
+		$.ajax({
+	        url : "/forgot_password",
+	        type: 'POST',
+	        data:{email:email},
+	        success : function(data){
+	        	if(data.success==true){
+	        			$( "#title_reset_password").hide();
+	        			$( "#back-btn").hide();
+	        			$( "#btn_validate_forgot_password").hide();
+	        			$( "#form-group-email").hide();		        		
+		        		var styleMessage='<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+			    		'<i class="fa fa-check-circle fa-fw fa-lg"></i> Nous venons de vous envoyer un email afin de réinitialiser votre mot de passe.  Si vous ne recevez pas notre email,  vérifier que celui-ci ne se trouve pas dans votre dossier "Courrier Indésirable".</div>';
+		        		$('#block_alert_forgot').html(styleMessage);
+		        	}else if(data.success==false){
+		        		var styleMessage='<div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+			    		'<i class="fa fa-times-circle fa-fw fa-lg"></i> L\'adresse e-mail n\'existe pas.</div>';
+		        		$('#block_alert_forgot').html(styleMessage);
+		        	}
+	        },
+	        error: function(data){
+	        	var styleMessage='<div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+			    		'<i class="fa fa-times-circle fa-fw fa-lg"></i> Echec d\'envoi de mail</div>';
+		        $('#block_alert_forgot').html(styleMessage);
+	        }
+    	});
+	}
+});
+
+});
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
+}
+</script>
+<?php // $this->headScript()->captureEnd();?>
+<div class="copyright">
+	 <?php echo date('Y') ?> © EHCG My Web Root.
+</div>
+<!-- END LOGIN -->
+<?php echo $this->inlineScript() ?>
+</body>
+<!-- END BODY -->
+</html>

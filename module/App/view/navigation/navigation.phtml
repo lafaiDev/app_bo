@@ -1,0 +1,21 @@
+<ul class="nav navbar-nav text-uppercase">
+	<li id="menu_dashboard" class="dropdown open selected" style="zoom: 0.8"><a
+		class="text-uppercase" href="/Q_Dashboard" style="border-top-left-radius: 12px;border-bottom-right-radius: 15px"> <i class="fa fa-dashboard"></i>
+			Tableau de bord
+		</a>
+	</li>	
+	<li id="menu_administration" class="dropdown" style="zoom: 0.8"><a
+		class="text-uppercase" href="/Q_Configuration" style="border-top-left-radius: 12px;border-bottom-right-radius: 15px"> <i class="icon-home"></i>
+			Administration
+		</a>
+	</li>
+	
+</ul>
+<?php if ($this->loggedUser->getType ()=='Manager'):?>
+<ul class="nav navbar-nav text-uppercase  pull-right">
+	<li id="menu_administration" class="dropdown" style="zoom: 0.8">
+		<a class="text-uppercase" href="/Customers" style="background: #009688;border-top-right-radius: 15px;border-top-left-radius: 15px"> <i class="fa fa-cogs"></i>
+		</a>
+	</li>
+</ul>
+<?php endif;?>	

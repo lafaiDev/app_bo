@@ -1,0 +1,63 @@
+<?php
+$title = 'Tableau de bord | My Quizz Root';
+$this->headTitle ( $title );
+?>
+<div class="row">
+	<!--  -->
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		<div class="dashboard-stat blue-hoki">
+			<div class="visual">
+				<i class="fa fa-user"></i>
+			</div>
+			<div class="details">
+				<div id="block_total_companies" class="number">
+					<?= $stats['u'] ?>
+				</div>
+				<div class="desc">Utilisateurs enregistrées</div>
+			</div>
+		</div>
+	</div>
+	<!--  -->
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		<div class="dashboard-stat green-haze">
+			<div class="visual">
+				<i class="fa fa-file-text"></i>
+			</div>
+			<div class="details">
+				<div id="block_titulaires" class="number">
+					<?= $stats['t'] ?>
+				</div>
+				<div class="desc">Tests passés</div>
+			</div>
+		</div>
+	</div>
+	<!--  -->
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		<div class="dashboard-stat purple-plum">
+			<div class="visual">
+				<i class="icon-pin"></i>
+			</div>
+			<div class="details">
+				<div id="block_published" class="number">
+					<?= $stats['g']//.'  ( '.$stats['pg'].' % )' ?>
+				</div>
+				<div class="desc">Tests gagnés <?= '  ( '.$stats['pg'].' % )' ?></div>
+			</div>
+		</div>
+	</div>
+	<!--  -->
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		<div class="dashboard-stat red-pink">
+			<div class="visual">
+				<i class="fa fa-files-o"></i>
+			</div>
+			<div class="details">
+				<div id="block_depublished" class="number">
+					<?= $stats['p']//.'  ( '.$stats['pp'].' % )' ?>
+				</div>
+				<div class="desc">Tests perdus ( <?= $stats['pp']?> % )</div>
+			</div>
+		</div>
+	</div>
+	
+</div>

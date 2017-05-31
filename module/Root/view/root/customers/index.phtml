@@ -1,0 +1,99 @@
+<?php
+$title = 'Root | My Web APP';
+$this->headTitle ( $title );
+
+echo $this->headLink ()
+//->prependStylesheet ( $this->basePath ( 'ressources_bo_webapp/assets/global/plugins/bootstrap-toastr/toastr.min.css' ) )
+//->prependStylesheet ( $this->basePath ( 'ressources_bo_webapp/assets/global/plugins/select2/select2.css' ) )
+->prependStylesheet ( $this->basePath ( 'ressources_bo_webapp/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css' ) )
+//->prependStylesheet ( $this->basePath ( 'ressources_bo_webapp/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css' ) )
+;
+?>
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading" >
+				<h3 class="panel-title">Gestion des utilisateurs </h3>
+			</div>
+			<div class="panel-body">
+				<table id="datatable_customers" class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th class="table-checkbox"><input type="checkbox"
+								class="group-checkable" data-set="#datatable_users .checkboxes" /></th>
+							<th>Société</th>
+							<th>Login</th>
+							<th>Date création</th>
+							<th>Active</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<?php
+echo $this->headScript ()
+//->prependFile ( $this->basePath ( 'ressources_bo_wtp/assets/global/plugins/bootstrap-toastr/toastr.min.js' ) )
+//->prependFile ( $this->basePath ( 'ressources_bo_wtp/assets/global/plugins/bootbox/bootbox.min.js' ) )
+->prependFile ( $this->basePath ( 'ressources_bo_webapp/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js' ) )
+->prependFile ( $this->basePath ( 'ressources_bo_webapp/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js' ) )
+//->prependFile ( $this->basePath ( 'ressources_bo_wtp/assets/global/plugins/select2/select2.min.js' ) )
+//->prependFile ( $this->basePath ( 'ressources_bo_wtp/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js' ) )
+;
+?>
+<script type="text/javascript">
+$(document).ready(function() {
+var table = $('#datatable_customers');
+table.dataTable({
+
+ 	"language": {
+ 		"processing":"Traitement en cours...",
+ 		"loadingRecords": "<i class='fa fa-spinner fa-spin'></i> Chargement en cours...",
+            "aria": {
+                "sortAscending": ": activer pour trier la colonne par ordre croissant",
+                "sortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
+            },
+            "emptyTable": "Aucune donn&eacute;e disponible dans le tableau",
+            "info": "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+            "infoEmpty": "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+            "infoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+            "infoPostFix":    "",
+            "lengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",
+            "search": "Filtrer&nbsp;:",
+            "zeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+            "paginate": {
+                "previous":"Pr&eacute;c&eacute;dent",
+                "next": "Suivant",
+                "last": "Dernier",
+                "first": "Premier"
+            }
+    },
+    "ajax": {
+		  "url": "/customers_datatable", 
+		},
+    "bStateSave": false, // save datatable state(pagination, sort, etc) in cookie.
+	"ordering": true,
+    "lengthMenu": [
+        [5, 15, 20, -1],
+        [5, 15, 20, "All"] // change per page values here
+    ],
+    // set the initial value
+    "pageLength": 5,
+    "columnDefs": [{  // set default column settings
+        'orderable': false,
+        'targets': [0]
+    }, {
+        "searchable": false,
+        "targets": [0]
+    }, {
+	    "className": "dt-center", "targets": [4]
+	}],
+    "order": [
+        [0, "desc"]
+    ]
+});
+});
+</script>
